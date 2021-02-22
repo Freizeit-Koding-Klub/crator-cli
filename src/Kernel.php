@@ -35,4 +35,9 @@ class Kernel extends BaseKernel
             (require $path)($routes->withPath($path), $this);
         }
     }
+
+    public function getProjectDir()
+    {
+        return __DIR__.'/../';
+    }
 }

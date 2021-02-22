@@ -1,0 +1,13 @@
+{
+  "main": "bin/console",
+  "files": [
+    ".env"
+  ],
+  "directories": [
+    "bin",
+    "config",
+    "src",
+    "var",
+    "vendor"
+  ]
+}
