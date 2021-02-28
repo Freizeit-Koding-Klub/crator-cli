@@ -7,9 +7,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class VersionCommand extends Command
+class TestCommand extends Command
 {
-    protected static $defaultName = 'crator:version';
+    protected static $defaultName = 'crator:test';
 
     protected function configure()
     {
@@ -19,7 +19,7 @@ class VersionCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $output->writeln("Crator-CLI version: " . VersionHelper::getCurrentVersion());
+            $output->writeln("test");
         } catch (\Exception $exception) {
             $output->writeln("Something went wrong. Error message: {$exception->getMessage()}");
             $output->writeln("Trace as string: {$exception->getTraceAsString()}");
