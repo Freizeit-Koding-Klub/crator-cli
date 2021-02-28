@@ -3,7 +3,7 @@
     "description": "Symfony base project for the crator cli tools",
     "type": "project",
     "license": "proprietary",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "8mylez GmbH"
