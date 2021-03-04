@@ -10,5 +10,6 @@
     "var",
     "vendor"
   ],
-  "git-version": "GITVERSION"
+  "git-version": "GITVERSION",
+  "output": "./cratorcli"
 }

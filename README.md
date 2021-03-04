@@ -13,4 +13,7 @@ Before creating the phar file, make sure that the envorinment is set to prod in 
 Use [box](https://github.com/box-project/box) for building the phar file. Install the package as described there.
 
 ### Build process
-To build the phar file, use "box compile" in the root directory of the project. The phar file is then located at "bin/console.phar".
+To build the phar file, use "box compile" in the root directory of the project. The phar file is then created in the root directory with the filename "cratorcli".
+
+### Creating a new release
+When adding a new feature or something, firstly, commit/merge all changes to master. Then go to github.com and draft a new release with a new release-version. Upload the builded cratorcli file there, so that it can be accessed via the update command.

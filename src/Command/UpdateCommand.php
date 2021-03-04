@@ -39,8 +39,6 @@ class UpdateCommand extends Command
     protected function configure()
     {
         $this->setDescription('Returns the current version of crator-cli.');
-
-        //todo: add dry option?
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -51,13 +49,16 @@ class UpdateCommand extends Command
             $latestRelease = $this->getLatestReleaseFromGithub();
             $latestReleaseVersion = $latestRelease['tag_name'];
 
+            $output->writeln('Latest release version: ' . $latestReleaseVersion);
+            $output->writeln('Current release version: ' . $currentVersion);
+
             if (version_compare($currentVersion, $latestReleaseVersion, '>=')) {
-                $output->writeln('Latest release version: ' . $latestReleaseVersion);
-                $output->writeln('Current release version: ' . $currentVersion);
                 $output->writeln('Crator-CLI is already up to date!');
 
                 return Command::SUCCESS;
             }
+
+            $output->writeln('Downloading latest release ...');
 
             $response = $this->client->request(
                 'GET',
@@ -66,12 +67,13 @@ class UpdateCommand extends Command
 
             $newRelease = $response->getContent();
 
-            list($scriptPath) = get_included_files();
+            $output->writeln('Replacing executable file ...');
 
+            list($scriptPath) = get_included_files();
             $result = file_put_contents($scriptPath, $newRelease);
 
             if ($result === false) {
-                throw new \Exception("Could not write replace crator-cli file.");
+                throw new \Exception("Could not replace crator-cli file.");
             }else {
                 $output->write("Successfully updated crator-cli to version {$latestReleaseVersion}!");
             }
