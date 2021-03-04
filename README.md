@@ -1,6 +1,23 @@
 # Crator CLI
 
-## Installation
+## Usage
+
+- Install by downloading the lastest release
+- Make the file globally executable by running
+    - "mv cratorcli /usr/local/bin/cratorcli"
+    - chmod +x /usr/local/bin/cratorcli
+- Test by running "cratorcli"
+
+## crator:api
+- use this command to fetch a zip-file from the crator api and merge its content into the provided plugin.
+
+## crator:update
+- use this command to update to the lastest cratorcli version.
+
+## crator:version
+- shows the current cratorcli version.
+
+## Installation for LDE
 
 Get all dependencies by running "composer install" in the project's root directory.
 
