@@ -38,14 +38,14 @@ class CratorApiCommand extends Command
         $this->setDescription('Calls crator api with config string and inserts response into plugin.')
             ->addArgument('apiRoute',InputArgument::REQUIRED, 'Crator api route that is called. Example input: /cms-block/create')
             ->addArgument('pathToPlugin',InputArgument::REQUIRED, 'Path to root dir of Plugin. Both absolute and relative allowed. Example: /var/demo/plugin')
-            ->addArgument('cmsConfiguration',InputArgument::OPTIONAL, 'CMS-Configuration string. JSON needed.');
+            ->addArgument('configurationString',InputArgument::OPTIONAL, 'Configuration string for crator api. JSON format needed.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
             $apiUrlWithConfig = CratorHandler::CRATOR_API_BASE_URL . $input->getArgument('apiRoute');
-            $apiUrlWithConfig .= '?cmsConfiguration=' . urlencode($input->getArgument('cmsConfiguration'));
+            $apiUrlWithConfig .= '?configurationString=' . urlencode($input->getArgument('configurationString'));
 
             $absTargetPath = $this->filePathHelper->getAbsolutePath($input->getArgument('pathToPlugin'));
 
