@@ -9,9 +9,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CratorApiCommand extends Command
+class CratorCreateCommand extends Command
 {
-    protected static $defaultName = 'crator:api';
+    protected static $defaultName = 'crator:create';
 
     /**
      * @var CratorHandler
@@ -35,8 +35,8 @@ class CratorApiCommand extends Command
 
     protected function configure()
     {
-        $this->setDescription('Calls crator api with config string and inserts response into plugin.')
-            ->addArgument('apiRoute',InputArgument::REQUIRED, 'Crator api route that is called. Example input: /cms-block/create')
+        $this->setDescription('Calls crator create api with config string and inserts response into plugin.')
+            ->addArgument('elementName',InputArgument::REQUIRED, 'Crator create api element that is called. Example input: cmselement')
             ->addArgument('pathToPlugin',InputArgument::REQUIRED, 'Path to root dir of Plugin. Both absolute and relative allowed. Example: /var/demo/plugin')
             ->addArgument('configurationString',InputArgument::OPTIONAL, 'Configuration string for crator api. JSON format needed.');
     }
@@ -44,8 +44,9 @@ class CratorApiCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $apiUrlWithConfig = CratorHandler::CRATOR_API_BASE_URL . $input->getArgument('apiRoute');
-            $apiUrlWithConfig .= '?configurationString=' . urlencode($input->getArgument('configurationString'));
+            $apiUrlWithConfig = CratorHandler::CRATOR_API_BASE_URL . '/create';
+            $apiUrlWithConfig .= '?elementName=' . urlencode($input->getArgument('elementName'));
+            $apiUrlWithConfig .= '&configurationString=' . urlencode($input->getArgument('configurationString'));
 
             $absTargetPath = $this->filePathHelper->getAbsolutePath($input->getArgument('pathToPlugin'));
 
